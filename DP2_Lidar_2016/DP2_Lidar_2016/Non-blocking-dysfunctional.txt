@@ -1,0 +1,155 @@
+        #region Dysfunctional non-blocking sensor acquisition
+        //USES GETRANGE AND DATAEVENTRECEIVEDHANDLER(EVENT HANDLING)
+        public Tuple<int[], int[], int[], TimeSpan> testfunction()
+        {
+            //http://stackoverflow.com/questions/52797/how-do-i-get-the-path-of-the-assembly-the-code-is-in
+            Program program = new Program();
+            Thread testThread3 = new Thread(delegate () { program.getRange(3); });
+            Thread testThread4 = new Thread(delegate () { program.getRange(4); });
+            Thread testThread5 = new Thread(delegate () { program.getRange(5); });
+            //is there a way to make each thread sleep?? sleeping may not be the most efficient
+            testThread3.Start();
+            testThread4.Start();
+            testThread5.Start();
+
+            Stopwatch mytest = new Stopwatch();
+            bool myFlag = false;
+            int[] myint1 = new int[682] ;
+            int[] myint2 = new int[682];
+            int[] myint3 = new int[682];
+            int scanCount = 0;
+            while (!myFlag)
+            {
+                mytest.Start();
+                //IF ALL NULL THEN SLEEP, AND IF MORE THAN 10 SLEEPS WE EXIT
+                if (program.samples3 == null || program.samples4 == null || program.samples5 == null)
+                {
+                    //Console.WriteLine("COM3: {0}\tCOM4: {1}\tCOM5: {2}", program.samples3, program.samples4, program.samples5);
+                    Thread.Sleep(20);
+                    scanCount++;
+                    Console.WriteLine("{0}", scanCount);
+                    if (scanCount>=10)
+                    {
+                        scanCount = 0;
+                        int[] errorVal = new int[1];
+                        errorVal[0] = -1;
+                        return (Tuple.Create(errorVal, errorVal, errorVal, mytest.Elapsed));
+                    }
+                }
+                //ALL IS WELL
+                else if (program.samples3.Length == 682 && program.samples4.Length == 682 && program.samples5.Length == 682)
+                {
+                    mytest.Stop();
+                    myint1 = program.samples3;
+                    myint2 = program.samples4;
+                    myint3 = program.samples5;
+                 //   Console.WriteLine("it worked in {0} seconds", mytest.Elapsed.ToString());
+                    myFlag = true;
+                }
+                else
+                {
+                //    Console.WriteLine("not working");
+                }
+            }
+
+            //DISPLAY PURPOSES
+            /*
+            for (int i = 0; i < program.samples3.Length - 1; i++)
+            {
+                int j = program.samples3[i];
+                int k = program.samples4[i];
+                int l = program.samples5[i];
+                Console.WriteLine("sensor1: {0}\tsensor2: {1}\tsensor3: {2}", j, k, l);
+            }
+            */
+            return Tuple.Create(myint1, myint2, myint3, mytest.Elapsed);
+
+            
+          //  Console.WriteLine("Three sensors Threaded...");
+        }
+        //NON-BLOCKING USING EVENT HANDLING
+        public TimeSpan getRange(int whichSensor)
+        {
+            
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            SerialPort sp1 = new SerialPort("COM"+whichSensor.ToString(), 750000, 0, 8);
+            sp1.Open();
+       //     sp1.WriteLine("BM"); //turns laser on.. only need to run at start
+            sp1.WriteLine("GD0044072500");
+            sp1.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
+            sw.Stop();
+            //sp1.Close();
+            //return Tuple.Create(rangeValues,sw.Elapsed);
+           // return Tuple.Create(samples3,samples4,samples5);
+           return sw.Elapsed;
+        }
+        //USED FOR GETRANGE()
+        private void DataReceivedHandler(object sender,SerialDataReceivedEventArgs e)
+        {
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            char[] newchararray = new char[2110]; //raw data without first 22 bytes
+            char[] charArray; //raw char
+            char[] onlyrangedata = new char[2048];
+            char[,] encodeddist = new char[682, 3];
+            int[] rangeValues = new int[682];
+            SerialPort sp = (SerialPort)sender;
+            string data = sp.ReadExisting();
+            sp.Close();
+            charArray = data.ToCharArray(); //array of ASCII char
+            //Console.WriteLine(data.IndexOf("\n", 21)+1);
+            //Console.WriteLine(data);
+
+            int z = charArray.Length - 2111;
+            //should be able to use a data.IndexOf command
+            //3RD LINE FEED TO END OF IT
+            for (int i = z; i < charArray.Length - 1; i++) //23 if only gd
+            {
+                newchararray[i - z] = charArray[i];
+            }
+
+            //WE DO NOT WANT SUM OR LF
+            for (int x = 0; x <= 31; x++)
+            {
+                for (int l = 0; l < 64; l++)
+                {
+                    onlyrangedata[64 * x + l] = newchararray[66 * x + l];
+                }
+            }
+            //newchararray = newchararray.Where(val => val != value).ToArray(); // deletes LF but not sum... (We could use Matlab methods
+            int stepNum = onlyrangedata.Length / 3;
+            for (int k = 0; k < stepNum; k++)
+            {
+                encodeddist[k, 0] = (char)onlyrangedata.GetValue(k * 3);
+                encodeddist[k, 1] = (char)onlyrangedata.GetValue(k * 3 + 1);
+                encodeddist[k, 2] = (char)onlyrangedata.GetValue(k * 3 + 2);
+            }
+            int numRows = encodeddist.GetLength(0); //number of rows
+            for (int k = 0; k < numRows; k++)
+            {
+                rangeValues[k] = decodeSCIP(encodeddist[k, 0], encodeddist[k, 1], encodeddist[k, 2]);
+            }
+            sw.Stop();
+            if(sp.PortName == "COM3")
+            {
+                samples3 = rangeValues;
+            }
+            else if(sp.PortName == "COM4")
+            {
+                samples4 = rangeValues;
+            }
+            else
+            {
+                samples5 = rangeValues;
+            }
+            
+            //rangeValues.ToList().ForEach(i => Console.WriteLine(i.ToString()));
+            // sensor1.WriteCommand("QT"); // TURN LASER OFF
+            //   sensor1.HokuyoClose();
+            
+           // Console.WriteLine(sw.Elapsed);
+
+        }
+
+        #endregion

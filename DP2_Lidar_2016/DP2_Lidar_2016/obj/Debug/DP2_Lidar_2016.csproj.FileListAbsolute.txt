@@ -1,0 +1,45 @@
+c:\users\capstone 2015\documents\visual studio 2015\Projects\DP2_Lidar_2016\DP2_Lidar_2016\bin\Debug\DP2_Lidar_2016.pdb
+c:\users\capstone 2015\documents\visual studio 2015\Projects\DP2_Lidar_2016\DP2_Lidar_2016\obj\Debug\DP2_Lidar_2016.pdb
+C:\Users\Capstone 2015\Documents\Visual Studio 2015\Projects\Consistent\DP2_Lidar_2016\DP2_Lidar_2016\bin\Debug\DP2_Lidar_2016.exe.config
+C:\Users\Capstone 2015\Documents\Visual Studio 2015\Projects\Consistent\DP2_Lidar_2016\DP2_Lidar_2016\obj\Debug\Interop.MLApp.dll
+C:\Users\Capstone 2015\Documents\Visual Studio 2015\Projects\Consistent\DP2_Lidar_2016\DP2_Lidar_2016\obj\Debug\DP2_Lidar_2016.csproj.ResolveComReference.cache
+C:\Users\Capstone 2015\Documents\Visual Studio 2015\Projects\Consistent\DP2_Lidar_2016\DP2_Lidar_2016\obj\Debug\DP2_Lidar_2016.exe
+C:\Users\Capstone 2015\Documents\Visual Studio 2015\Projects\Consistent\DP2_Lidar_2016\DP2_Lidar_2016\obj\Debug\DP2_Lidar_2016.pdb
+C:\Users\Capstone 2015\Documents\Visual Studio 2015\Projects\Consistent\DP2_Lidar_2016\DP2_Lidar_2016\bin\Debug\DP2_Lidar_2016.exe
+C:\Users\Capstone 2015\Documents\Visual Studio 2015\Projects\Consistent\DP2_Lidar_2016\DP2_Lidar_2016\bin\Debug\DP2_Lidar_2016.pdb
+C:\Users\Capstone 2015\Documents\Visual Studio 2015\Projects\Consistent\DP2_Lidar_2016\DP2_Lidar_2016\obj\Debug\DP2_Lidar_2016.csprojResolveAssemblyReference.cache
+C:\Users\Capstone 2015\Documents\Visual Studio 2015\Projects\DP2_Lidar_2016\DP2_Lidar_2016\bin\Debug\DP2_Lidar_2016.exe.config
+C:\Users\Capstone 2015\Documents\Visual Studio 2015\Projects\DP2_Lidar_2016\DP2_Lidar_2016\bin\Debug\DP2_Lidar_2016.exe
+C:\Users\Capstone 2015\Documents\Visual Studio 2015\Projects\DP2_Lidar_2016\DP2_Lidar_2016\obj\Debug\DP2_Lidar_2016.exe
+C:\Users\Capstone 2015\Documents\Visual Studio 2015\Projects\DP2_Lidar_2016\DP2_Lidar_2016\bin\Debug\Accord.dll.config
+C:\Users\Capstone 2015\Documents\Visual Studio 2015\Projects\DP2_Lidar_2016\DP2_Lidar_2016\bin\Debug\Accord.dll
+C:\Users\Capstone 2015\Documents\Visual Studio 2015\Projects\DP2_Lidar_2016\DP2_Lidar_2016\bin\Debug\Accord.Math.dll
+C:\Users\Capstone 2015\Documents\Visual Studio 2015\Projects\DP2_Lidar_2016\DP2_Lidar_2016\bin\Debug\Accord.xml
+C:\Users\Capstone 2015\Documents\Visual Studio 2015\Projects\DP2_Lidar_2016\DP2_Lidar_2016\bin\Debug\Accord.Math.xml
+C:\Users\Capstone 2015\Documents\Visual Studio 2015\Projects\DP2_Lidar_2016\DP2_Lidar_2016\obj\Debug\DP2_Lidar_2016.csprojResolveAssemblyReference.cache
+C:\Users\capstone\Documents\Visual Studio 2013\Projects\DP2_Lidar_2016\DP2_Lidar_2016\bin\Debug\DP2_Lidar_2016.exe.config
+C:\Users\capstone\Documents\Visual Studio 2013\Projects\DP2_Lidar_2016\DP2_Lidar_2016\obj\Debug\DP2_Lidar_2016.exe
+C:\Users\capstone\Documents\Visual Studio 2013\Projects\DP2_Lidar_2016\DP2_Lidar_2016\obj\Debug\DP2_Lidar_2016.pdb
+C:\Users\capstone\Documents\Visual Studio 2013\Projects\DP2_Lidar_2016\DP2_Lidar_2016\bin\Debug\Accord.dll.config
+C:\Users\capstone\Documents\Visual Studio 2013\Projects\DP2_Lidar_2016\DP2_Lidar_2016\bin\Debug\DP2_Lidar_2016.exe
+C:\Users\capstone\Documents\Visual Studio 2013\Projects\DP2_Lidar_2016\DP2_Lidar_2016\bin\Debug\DP2_Lidar_2016.pdb
+C:\Users\capstone\Documents\Visual Studio 2013\Projects\DP2_Lidar_2016\DP2_Lidar_2016\bin\Debug\Accord.dll
+C:\Users\capstone\Documents\Visual Studio 2013\Projects\DP2_Lidar_2016\DP2_Lidar_2016\bin\Debug\Accord.Math.dll
+C:\Users\capstone\Documents\Visual Studio 2013\Projects\DP2_Lidar_2016\DP2_Lidar_2016\bin\Debug\Accord.xml
+C:\Users\capstone\Documents\Visual Studio 2013\Projects\DP2_Lidar_2016\DP2_Lidar_2016\bin\Debug\Accord.Math.xml
+C:\Users\capstone\Documents\Visual Studio 2013\Projects\DP2_Lidar_2016\DP2_Lidar_2016\obj\Debug\DP2_Lidar_2016.csprojResolveAssemblyReference.cache
+C:\Users\Capstone\Desktop\DP2_Lidar_2016\DP2_Lidar_2016\bin\Debug\DP2_Lidar_2016.exe.config
+C:\Users\Capstone\Desktop\DP2_Lidar_2016\DP2_Lidar_2016\obj\Debug\DP2_Lidar_2016.exe
+C:\Users\Capstone\Desktop\DP2_Lidar_2016\DP2_Lidar_2016\obj\Debug\DP2_Lidar_2016.pdb
+C:\Users\Capstone\Desktop\DP2_Lidar_2016\DP2_Lidar_2016\obj\Debug\DP2_Lidar_2016.csprojResolveAssemblyReference.cache
+C:\Users\Capstone\Documents\DP2_Lidar_2016\DP2_Lidar_2016\DP2_Lidar_2016\bin\Debug\DP2_Lidar_2016.exe.config
+C:\Users\Capstone\Documents\DP2_Lidar_2016\DP2_Lidar_2016\DP2_Lidar_2016\obj\Debug\DP2_Lidar_2016.exe
+C:\Users\Capstone\Documents\DP2_Lidar_2016\DP2_Lidar_2016\DP2_Lidar_2016\obj\Debug\DP2_Lidar_2016.pdb
+C:\Users\Capstone\Documents\DP2_Lidar_2016\DP2_Lidar_2016\DP2_Lidar_2016\bin\Debug\Accord.dll.config
+C:\Users\Capstone\Documents\DP2_Lidar_2016\DP2_Lidar_2016\DP2_Lidar_2016\bin\Debug\DP2_Lidar_2016.exe
+C:\Users\Capstone\Documents\DP2_Lidar_2016\DP2_Lidar_2016\DP2_Lidar_2016\bin\Debug\DP2_Lidar_2016.pdb
+C:\Users\Capstone\Documents\DP2_Lidar_2016\DP2_Lidar_2016\DP2_Lidar_2016\bin\Debug\Accord.dll
+C:\Users\Capstone\Documents\DP2_Lidar_2016\DP2_Lidar_2016\DP2_Lidar_2016\bin\Debug\Accord.Math.dll
+C:\Users\Capstone\Documents\DP2_Lidar_2016\DP2_Lidar_2016\DP2_Lidar_2016\bin\Debug\Accord.xml
+C:\Users\Capstone\Documents\DP2_Lidar_2016\DP2_Lidar_2016\DP2_Lidar_2016\bin\Debug\Accord.Math.xml
+C:\Users\Capstone\Documents\DP2_Lidar_2016\DP2_Lidar_2016\DP2_Lidar_2016\obj\Debug\DP2_Lidar_2016.csprojResolveAssemblyReference.cache

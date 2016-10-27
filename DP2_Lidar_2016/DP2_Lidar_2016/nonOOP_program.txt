@@ -1,0 +1,211 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Diagnostics;
+using System.IO.Ports;
+using System.IO;
+
+namespace DP2_Lidar_2016
+{
+    
+
+    class Program
+    {
+        static SerialPort Hokuyo;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="args"></param>
+        static void Main(string[] args)
+        {
+            Hokuyo = new SerialPort();
+            Hokuyo.PortName = "COM3";
+            Hokuyo.BaudRate = 750000; // max baud rate according to specs
+            Hokuyo.DataBits = 8;
+            Console.WriteLine("Baudrate {0}", Hokuyo.BaudRate);
+            Console.WriteLine("Default portname {0}", Hokuyo.PortName);
+            Console.WriteLine("Default databits {0}", Hokuyo.DataBits);
+            Console.WriteLine("Default stopbits {0}", Hokuyo.StopBits);
+            Console.WriteLine("Default is open {0}", Hokuyo.IsOpen);
+            Console.WriteLine("Default parity {0}", Hokuyo.Parity);
+            Console.WriteLine("number of processors: {0}", Environment.ProcessorCount); //see how many processors for threading purposes which will run processes in parallel 
+            Hokuyo.Open();
+            //Hokuyo.NewLine = "CR"; // carriage return
+            Hokuyo.ReadTimeout = 1000;
+            Hokuyo.WriteTimeout = 1000;
+
+            //THIS WILL EXECUTE MATLAB CODE
+            MLApp.MLApp matlab = new MLApp.MLApp();
+
+            // Change to the directory where the function is located 
+            matlab.Execute(@"cd \'C:\Users\Capstone 2015\Documents\CAPSTONE\Code\Lidar Run\'");
+
+            // Define the output 
+            object result = null;
+
+            // Call the MATLAB function myfunc
+            matlab.Feval("myfunc", 2, out result, 3.14, 42.0, "world");
+
+            // Display result 
+            object[] res = result as object[];
+
+            Console.WriteLine(res[0]);
+            Console.WriteLine(res[1]);
+            
+            Console.ReadLine();
+
+            Hokuyo.WriteLine("SCIP2.0");
+            Thread.Sleep(100);
+            Console.WriteLine(Hokuyo.ReadLine());
+            Hokuyo.WriteLine("VV");
+            bool gdflag = false;
+        
+            while (!gdflag)
+            {
+                try
+                {
+                    Console.WriteLine(Hokuyo.ReadLine());
+                }
+                catch
+                {
+                    gdflag = true;
+                }
+            }
+            Hokuyo.WriteLine("PP");
+             gdflag = false;
+            while (!gdflag)
+            {
+                try
+                {
+                    Console.WriteLine(Hokuyo.ReadLine());
+                }
+                catch
+                {
+                    gdflag = true;
+                }
+            }
+            Hokuyo.WriteLine("II"); // information
+            gdflag = false;
+            while (!gdflag)
+            {
+                try
+                {
+                    Console.WriteLine(Hokuyo.ReadLine());
+                }
+                catch
+                {
+                    gdflag = true;
+                }
+            }
+            Hokuyo.WriteLine("BM"); // turn laser on
+            Thread.Sleep(100);
+            Hokuyo.WriteLine("SS750000"); // this makes sure the bit rate of the sensor is same
+            gdflag = false;
+            while (!gdflag)
+            {
+                try
+                {
+                    Console.WriteLine(Hokuyo.ReadLine());
+                }
+                catch
+                {
+                    gdflag = true;
+                }
+            }
+            
+
+            Hokuyo.WriteLine("MD0010065003"); // latest measurement data to host
+            gdflag = false;
+            while (!gdflag)
+            {
+                try
+                {
+                    Console.WriteLine(Hokuyo.ReadLine());
+                }
+                catch
+                {
+                    gdflag = true;
+                }
+            }
+
+            Hokuyo.WriteLine("GD0044072500"); // latest measurement data to host
+            gdflag = false;
+            object decodeResult = null;
+            //char rangeenc = null;
+            while (!gdflag)
+            {
+                try
+                {
+                    matlab.Feval("LidarScan2", 3, out decodeResult, Hokuyo);
+
+                    //matlab.Feval("decodeSCIP", 1, out decodeResult, rangeenc);
+                    /*
+                    string info;
+                    info = Hokuyo.ReadLine();
+                    byte[] bytes = new byte[info.Length * sizeof(char)];
+                    Buffer.BlockCopy(info.ToCharArray(), 0, bytes, 0, bytes.Length);
+                    char[] chars = new char[bytes.Length / sizeof(char)];
+                    System.Buffer.BlockCopy(bytes, 0, chars, 0, bytes.Length);
+                    new string(chars);
+                    Console.WriteLine(chars);
+                    */
+                }
+                catch
+                {
+                    gdflag = true;
+                }
+            }
+
+
+            Console.ReadKey();
+
+            /*
+
+            Thread t = new Thread(TestThread);
+
+
+            Thread.Sleep(50); // sleep current thread
+            t.Start(); // start parallel thread
+            Thread.Sleep(50); // sleep current thread
+            Console.WriteLine("Thread has paused");
+            */
+
+           // Hokuyo.WriteLine("TM2"); // ADJUST MODE OFF
+            Hokuyo.WriteLine("QT"); // TURN LASER OFF
+            Hokuyo.Close();
+
+        }
+
+        // Lidar scan get value method
+        public int LidarScan2(int command)
+        {
+            SerialPort mySerialObj = Hokuyo;
+            if (command == 1)
+            {
+                mySerialObj.WriteLine("BM"); // turn laser on
+                mySerialObj.WriteLine("GD0044072500"); // latest measurement data to host
+                bool mscommand = false;
+                while (!mscommand)
+                {
+                    try
+                    {
+                        Console.WriteLine(mySerialObj.ReadLine());
+
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Done");
+                        mscommand = true;
+                    }
+                }
+
+                Hokuyo.WriteLine("QT"); // turn laser off
+            }
+            int rangeVal = 0;
+            return rangeVal;
+        }
+
+    }
+}

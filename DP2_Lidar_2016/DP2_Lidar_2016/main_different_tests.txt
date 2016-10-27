@@ -1,0 +1,113 @@
+            #region TEST FOR ONE SENSOR CONTINUOUSLY
+            /*
+            //http://stackoverflow.com/questions/52797/how-do-i-get-the-path-of-the-assembly-the-code-is-in
+            Program program = new Program();
+            bool myFlag = false;
+            double[] PRETEND = new double[3];
+            Stopwatch sw = new Stopwatch();
+            while (!myFlag)
+            {
+
+                var myanswers = program.testfunction3();
+                PRETEND = program.PositionHeading(myanswers);
+                Console.WriteLine("x = {0}\ty = {1}\th = {2}", PRETEND[0], PRETEND[1],PRETEND[2]);
+
+            }
+            */
+            #endregion
+            #region TEST FOR ONE SENSOR
+            /*
+            //http://stackoverflow.com/questions/52797/how-do-i-get-the-path-of-the-assembly-the-code-is-in
+            Program program = new Program();
+            Thread testThread3 = new Thread(delegate () { program.getRange2(4); });
+
+            //is there a way to make each thread sleep?? sleeping may not be the most efficient
+            testThread3.Start();
+
+            Stopwatch mytest = new Stopwatch();
+            mytest.Start();
+            bool myFlag = false;
+            int[] myint1 = new int[682];
+
+            int scanCount = 0;
+            while (!myFlag)
+            {
+                // mytest.Start();
+
+                if (program.samples4 == null )
+                {
+                    //     Console.WriteLine("COM3: {0}\tCOM4: {1}\tCOM5: {2}", program.samples3, program.samples4, program.samples5);
+                    Thread.Sleep(20);
+                    scanCount++;
+                    Console.WriteLine(scanCount.ToString());
+                    //      Console.WriteLine("{0}", scanCount);
+                    
+                    if (scanCount >= 10)
+                    {
+                        scanCount = 0;
+                        int[] errorVal = new int[1];
+                        errorVal[0] = -1;
+                        return (Tuple.Create(errorVal, errorVal, errorVal));
+                    }
+                    
+                }
+                else if (program.samples4.Length == 682 )
+                {
+                    mytest.Stop();
+                    myint1 = program.samples4;
+                    Console.WriteLine("{0}", mytest.Elapsed.ToString());
+                    myFlag = true;
+                }
+                else
+                {
+                    //    Console.WriteLine("not working");
+                }
+            }
+
+            mytest.Stop();
+            double[] PRETEND = new double[3];
+            PRETEND =program.PositionHeading(Tuple.Create(program.samples3,myint1,program.samples5));
+            Console.WriteLine("x = {0}",PRETEND[0].ToString());
+            Console.WriteLine("y = {0}", PRETEND[1].ToString());
+            Console.WriteLine("h = {0}", PRETEND[2].ToString());
+            Console.ReadKey();
+    */
+            #endregion
+
+            #region Uses non-blocking dysfunctional code
+            /*
+            Program program = new Program();
+            bool myFlag = false;
+            Stopwatch sw = new Stopwatch();
+            while (!myFlag)
+            {
+
+                var myanswers = program.testfunction();
+
+            //    Console.WriteLine("One Scan Complete OR 10 Scans of Nothing.");
+            }
+
+
+            Console.ReadKey();
+
+
+
+            */
+
+            #endregion
+
+
+            #region Blocking working code
+            /*
+            //http://stackoverflow.com/questions/52797/how-do-i-get-the-path-of-the-assembly-the-code-is-in
+            Program program = new Program();
+            bool myFlag = false;
+            Stopwatch sw = new Stopwatch();
+            while (!myFlag)
+            {
+
+                var myanswers = program.testfunction2();
+
+            }  
+            */
+            #endregion
